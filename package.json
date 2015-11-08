@@ -16,6 +16,7 @@
     "flux": "2.1.1",
     "front-matter": "2.0.0",
     "history": "1.12.5",
+    "instagram-node": "^0.5.8",
     "moment": "^2.10.6",
     "normalize.css": "3.0.3",
     "react": "0.14.0",
