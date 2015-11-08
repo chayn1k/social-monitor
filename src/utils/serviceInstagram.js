@@ -1,6 +1,7 @@
 import {instagram as Instagram} from 'instagram-node';
 import querystring from 'querystring';
 import conf from '../config';
+import logger from './logger';
 
 const instagram = new Instagram();
 instagram.use(conf.instagram);
@@ -12,6 +13,7 @@ class serviceInstagram {
 
             instagram.tag_media_recent(_query, (err, medias, pagination, limit) => {
                 if (err) {
+                    logger.error(err);
                     return reject(err);
                 }
 

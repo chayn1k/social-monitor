@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import Twitter from '../../utils/serviceTwitter';
 import Instagram from '../../utils/serviceInstagram';
+import logger from '../../utils/logger';
 
 
 const router = new Router();
@@ -9,7 +10,7 @@ const instagram = new Instagram();
 
 router.use(async (err, req, res, next) => {
     if (req.app.get('env') === 'development') {
-        console.error(err);
+        logger.error(err);
     }
 
     res.status(500).send({status: 500, message: 'Internal error'});
@@ -29,7 +30,7 @@ router.get('/', async (req, res, next) => {
 
             res.status(200).send(result);
         }).catch(err => {
-            console.log(err);
+            logger.error(err);
             res.status(500).send({status: 500, message: `Internal server error.`});
         });
     } catch (err) {

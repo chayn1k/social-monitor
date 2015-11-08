@@ -2,6 +2,7 @@ import moment from 'moment';
 import Twitter from 'twit';
 import TwitterText from 'twitter-text';
 import conf from '../config';
+import logger from './logger';
 
 const twitter = new Twitter(conf.twitter);
 const count = 10;
@@ -13,6 +14,7 @@ class serviceTwitter {
 
             twitter.get('search/tweets', { q: query, count: count }, (err, res) => {
                 if (err) {
+                    logger.error(err);
                     return reject(err);
                 }
 
