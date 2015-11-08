@@ -1,6 +1,10 @@
 import 'babel-core/polyfill';
 import path from 'path';
 import express from 'express';
+import React from 'react';
+import ReactDOM from 'react-dom/server';
+import Router from './routes';
+import Html from './components/Html';
 
 const server = global.server = express();
 const port = process.env.PORT || 5000;
@@ -15,6 +19,32 @@ server.use(express.static(path.join(__dirname, 'public')));
 // Register API middleware
 // -----------------------------------------------------------------------------
 server.use('/api/v1', require('./api/v1/routes'));
+
+//
+// Register server-side rendering middleware
+// -----------------------------------------------------------------------------
+server.get('*', async (req, res, next) => {
+    try {
+        let statusCode = 200;
+        const data = { title: '', description: '', css: '', body: '' };
+        const css = [];
+        const context = {
+            onInsertCss: value => css.push(value),
+            onSetTitle: value => data.title = value,
+            onSetMeta: (key, value) => data[key] = value
+        };
+
+        await Router.dispatch({ path: req.path, context }, (state, component) => {
+            data.body = ReactDOM.renderToString(component);
+            data.css = css.join('');
+        });
+
+        const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
+        res.status(statusCode).send('<!doctype html>\n' + html);
+    } catch (err) {
+        next(err);
+    }
+});
 
 //
 // Launch the server
