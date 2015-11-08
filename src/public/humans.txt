@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Pavel Tchaikovsky -- @chayn1k
+
+# THANKS
+
+    http://www.reactstarterkit.com/
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, JavaScript
+    React, Flux, SuperAgent
