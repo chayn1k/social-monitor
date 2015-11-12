@@ -35,6 +35,7 @@
     "babel-loader": "^5.3.2",
     "babel-plugin-react-transform": "^1.1.1",
     "browser-sync": "^2.9.11",
+    "commander": "2.0.0",
     "css-loader": "^0.21.0",
     "csscomb": "^3.1.8",
     "del": "^2.0.2",
@@ -77,8 +78,8 @@
   },
   "scripts": {
     "lint": "eslint src tools && jscs src tools",
-    "csslint": "csscomb src/components --lint --verbose",
-    "csscomb": "csscomb src/components --verbose",
+    "csslint": "babel-node tools/run csscomb src/components --lint --verbose --exclude src/components/variables.css",
+    "csscomb": "babel-node tools/run csscomb src/components --verbose --exclude src/components/variables.css",
     "test": "eslint src && jest",
     "clean": "babel-node tools/run clean",
     "copy": "babel-node tools/run copy",

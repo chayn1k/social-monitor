@@ -1,12 +1,13 @@
 .posts-list {
-    list-style: none;
+    display: flex;
+
     margin: 0 auto;
     padding: 2em 0;
-    display: flex;
+
+    align-content: flex-start;
+    align-items: flex-start;
     flex-flow: row wrap;
     justify-content: space-between;
-    align-items: flex-start;
-    align-content: flex-start;
 }
 
 .posts-list__column {

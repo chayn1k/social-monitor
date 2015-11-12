@@ -4,25 +4,26 @@
 }
 
 .post {
+    box-sizing: border-box;
     /*width: 45%;*/
     margin: .5em 0 1em;
     padding: .2em;
-    box-sizing: border-box;
 
-    background-color: #fff;
     border: 1px solid #d8d8d8;
-    border-bottom-width: 2px;
     border-top-width: 0;
+    border-bottom-width: 2px;
+    background-color: #fff;
     /*box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, .4);*/
 }
 
 .post__header {
-    padding: .5em .5em .2em;
     min-height: var(--user-pic-size);
+    padding: .5em .5em .2em;
 }
 
 .post__header-inner {
     position: relative;
+
     padding-right: var(--source-icon-size);
 }
 
@@ -35,8 +36,10 @@
 .post__source {
     width: var(--source-icon-size);
     height: var(--source-icon-size);
-    opacity: 1;
+
     transition: opacity .3s;
+
+    opacity: 1;
 }
 
 .post__source:hover {
@@ -52,17 +55,20 @@
 }
 
 .post__time {
-    font-size: 1.3rem;
-    color: #979797;
     white-space: nowrap;
+
+    color: #979797;
+
+    font-size: 1.3rem;
 }
 
 /* user */
 .post__user {
-    display: block;
-    padding-left: calc(var(--user-pic-size) + 5px);
     position: relative;
-    text-overflow: ellipsis;
+
+    display: block;
+
+    padding-left: calc(var(--user-pic-size) + 5px);
 }
 
 .post__user-link {
@@ -73,26 +79,36 @@
     position: absolute;
     top: 0;
     left: 0;
+
     max-width: var(--user-pic-size);
-    opacity: 1;
+
     transition: opacity .3s;
+
+    opacity: 1;
 }
 
 .post__user-name {
-    color: #555;
-    font-size: 1.4rem;
-    text-decoration: underline;
     margin-right: .5em;
+
+    text-decoration: underline;
+
+    color: #555;
+
+    font-size: 1.4rem;
 }
 
 .post__user-full-name {
     display: block;
-    font-weight: bold;
-    padding-right: .3em;
-    color: #000;
-    white-space: nowrap;
     overflow: hidden;
+
+    padding-right: .3em;
+
+    white-space: nowrap;
     text-overflow: ellipsis;
+
+    color: #000;
+
+    font-weight: bold;
     line-height: 1.25;
 }
 
@@ -108,8 +124,9 @@
 
 .post__content {
     display: block;
-    padding: .5em;
+
     margin: 0;
+    padding: .5em;
 }
 
 .post__text {
@@ -119,6 +136,7 @@
 /* media */
 .post__media {
     margin: .5em 0;
+
     text-align: center;
 }
 

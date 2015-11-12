@@ -23,8 +23,9 @@ body {
 }
 
 body {
-    font-size: 1.6em; /* ~16px */
     background: var(--app-bg);
+
+    font-size: 1.6em; /* ~16px */
 }
 
 /*
