@@ -31,7 +31,8 @@ server.get('*', async (req, res, next) => {
         const context = {
             onInsertCss: value => css.push(value),
             onSetTitle: value => data.title = value,
-            onSetMeta: (key, value) => data[key] = value
+            onSetMeta: (key, value) => data[key] = value,
+            onPageNotFound: () => statusCode = 404
         };
 
         await Router.dispatch({ path: req.path, context }, (state, component) => {

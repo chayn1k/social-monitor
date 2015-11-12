@@ -25,7 +25,7 @@ router.get('/', async (req, res, next) => {
         ]).then(resultArr => {
             const result = Array.prototype.concat.apply([], resultArr);
             result.sort((first, second) => {
-                return second.createdAt.valueOf() - first.createdAt.valueOf();
+                return new Date(second.createdAt.valueOf()) - new Date(first.createdAt.valueOf());
             });
 
             res.status(200).send(result);

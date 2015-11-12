@@ -9,10 +9,22 @@
 
 html {
     color: #222;
-    font-weight: 100;
-    font-size: 1em; /* ~16px; */
+
     font-family: var(--font-family-base);
+    font-size: .625em; /* ~10px; */
+    font-weight: 100;
     line-height: 1.375; /* ~22px */
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 1.6em; /* ~16px */
+    background: var(--app-bg);
 }
 
 /*
@@ -39,11 +51,13 @@ html {
 
 hr {
     display: block;
+
     height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;
+
+    border: 0;
+    border-top: 1px solid #ccc;
 }
 
 /*
@@ -66,9 +80,10 @@ video {
  */
 
 fieldset {
-    border: 0;
     margin: 0;
     padding: 0;
+
+    border: 0;
 }
 
 /*
@@ -84,10 +99,11 @@ textarea {
  * ========================================================================== */
 
 .browserupgrade {
-    margin: 0.2em 0;
-    background: #ccc;
+    margin: .2em 0;
+    padding: .2em 0;
+
     color: #000;
-    padding: 0.2em 0;
+    background: #ccc;
 }
 
 /*
@@ -100,8 +116,8 @@ textarea {
     *,
     *:before,
     *:after {
-        background: transparent !important;
         color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */
+        background: transparent !important;
         box-shadow: none !important;
         text-shadow: none !important;
     }
@@ -132,6 +148,7 @@ textarea {
     pre,
     blockquote {
         border: 1px solid #999;
+
         page-break-inside: avoid;
     }
 

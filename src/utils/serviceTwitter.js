@@ -28,16 +28,36 @@ class serviceTwitter {
     }
 
     static normalize(post) {
-        return {
-            avatar: post.user.profile_image_url,
-            userId: post.user.id,
-            userName: post.user.name,
-            userNick: post.user.screen_name,
-            postLink: 'https://twitter.com/' + post.user.screen_name,
-            createdAt: moment(new Date(post.created_at)),
+        const entity = {
+            type: 'twitter',
+
+            id: post.id_str,
             text: TwitterText.autoLink(TwitterText.htmlEscape(post.text)),
-            type: 'twitter'
+            link: `https://twitter.com/${post.user.screen_name}/status/${post.id_str}`,
+            createdAt: moment(new Date(post.created_at)).toJSON(),
+
+            userId: post.user.id,
+            userName: post.user.screen_name,
+            userFullName: post.user.name,
+            userPic: post.user.profile_image_url,
+            userLink: `https://twitter.com/${post.user.screen_name}`
         };
+
+        if (post.entities.media) {
+            entity.medias = post.entities.media.map(media => ({
+                mediaId: media.id_str,
+                mediaUrl: media.media_url,
+                mediaLink: media.display_url,
+                mediaType: media.type === 'photo' ? 'image' : media.type
+            }));
+        }
+
+        if (post.retweeted_status) {
+            const {id_str: rtId, user: { screen_name: rtFromUser }} = post.retweeted_status;
+            entity.link = `https://twitter.com/${rtFromUser}/status/${rtId}`;
+        }
+
+        return entity;
     }
 }
 

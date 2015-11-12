@@ -1,0 +1,15 @@
+.posts-list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 2em 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.posts-list__column {
+    /*padding: 0 1em;*/
+    box-sizing: border-box;
+}

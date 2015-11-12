@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import fs from 'fs';
+
+const iconsSprite = fs.readFileSync('./src/public/img/sprite.svg').toString();
 
 class Html extends Component {
 
@@ -27,7 +30,8 @@ class Html extends Component {
                 <style id="css" dangerouslySetInnerHTML={{__html: this.props.css}} />
             </head>
             <body>
-                <div id="app" dangerouslySetInnerHTML={{__html: this.props.body}} />
+                <div id="app-svg-icons" dangerouslySetInnerHTML={{__html: iconsSprite}}></div>
+                <div id="app" dangerouslySetInnerHTML={{__html: this.props.body}}></div>
                 <script src="/app.js"></script>
             </body>
             </html>
