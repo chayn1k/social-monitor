@@ -7,17 +7,18 @@ import styles from './PostList.css';
 class PostsList extends Component {
 
     static propTypes = {
-        posts: PropTypes.array
+        posts: PropTypes.array,
+        columns: PropTypes.number
     };
 
-    state = {
+    static defaultProps = {
         columns: 3
     };
 
     getChildren() {
         // Build list items of single tweet components using map
         const columns = [];
-        const col = this.state.columns;
+        const col = this.props.columns;
 
         this.props.posts.map((item, index) => {
             const colId = index % col;

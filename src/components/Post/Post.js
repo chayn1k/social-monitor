@@ -28,7 +28,7 @@ class Post extends Component {
                     <span className="post__user-name">@{post.userName}</span>
                 </a>
                 <time dateTime={moment(post.createdAt).format()} className="post__time" title={moment(post.createdAt).format('LLLL')}>
-                    {moment(post.createdAt).format('DD MMM YYYY H:mm:ss')}
+                    {post.createdFromNow}
                 </time>
             </cite>
         );

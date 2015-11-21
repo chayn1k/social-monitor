@@ -6,7 +6,7 @@ import styles from './Icon.css';
 @withStyles(styles)
 class Icon extends Component {
 
-    static propTypes: {
+    static propTypes = {
         size: PropTypes.string,
         name: PropTypes.string.isRequired,
         className: PropTypes.string

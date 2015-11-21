@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import Twitter from '../../utils/serviceTwitter';
-import Instagram from '../../utils/serviceInstagram';
-import logger from '../../utils/logger';
+import Twitter from '../../server/serviceTwitter';
+import Instagram from '../../server/serviceInstagram';
+import logger from '../../server/logger';
 
 
 const router = new Router();

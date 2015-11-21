@@ -1,10 +1,12 @@
 import React from 'react';
 import Router from 'react-routing/src/Router';
-import http from './core/HttpClient';
 import App from './components/App';
 import IndexPage from './components/IndexPage';
+import Stream from './components/Stream';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
+
+import StreamActions from './actions/StreamActions';
 
 const router = new Router(on => {
     on('*', async (state, next) => {
@@ -13,8 +15,8 @@ const router = new Router(on => {
     });
 
     on('/:tag', async (state) => {
-        const posts = await http.get(`/api/v1?q=${state.params.tag}`);
-        return posts && <IndexPage posts={posts} />;
+        StreamActions.receiveMessages(state.params.tag);
+        return <IndexPage />;
     });
 
     on('error', (state, error) => state.statusCode === 404 ?

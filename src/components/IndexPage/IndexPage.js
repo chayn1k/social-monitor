@@ -1,19 +1,15 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './IndexPage.css';
 import withStyles from '../../decorators/withStyles';
-import PostsList from '../PostsList';
+import Stream from '../Stream';
 
 @withStyles(styles)
 class IndexPage extends Component {
 
-    static propTypes = {
-        posts: PropTypes.array
-    };
-
     render() {
         return (
             <div className="page page_index">
-                <PostsList posts={this.props.posts}/>
+                <Stream />
             </div>
         );
     }

@@ -6,22 +6,23 @@ import logger from './logger';
 
 const instagram = new Instagram();
 instagram.use(conf.instagram);
+const count = 10;
 
 class serviceInstagram {
     get(query = '') {
         return new Promise( (resolve, reject) => {
-            let _query = querystring.unescape(query).replace(/(\.|-)/g, '').replace(/(\s)/g, '').replace('#', '');
+            const _query = querystring.unescape(query).replace(/(\.|-)/g, '').replace(/(\s)/g, '').replace('#', '');
 
             if (!_query) return resolve([]);
 
-            instagram.tag_media_recent(_query, (err, medias, pagination, limit) => {
+            instagram.tag_media_recent(_query, { count: count }, (err, res) => {
                 if (err) {
                     logger.error(err);
                     return reject(err);
                 }
 
-                if (medias && (medias.length > 0)) {
-                    return resolve(medias.slice(0, 5).map(serviceInstagram.normalize));
+                if (res && (res.length > 0)) {
+                    return resolve(res.slice(0, count).map(serviceInstagram.normalize));
                 }
 
                 return resolve([]);
@@ -36,7 +37,7 @@ class serviceInstagram {
             id: post.id,
             text: post.caption && post.caption.text || '',
             link: post.link,
-            createdAt: moment(post.createdAt).toJSON(),
+            createdAt: moment.unix(post.created_time).toJSON(),
             medias: [{
                 mediaId: post.id,
                 mediaUrl: post.images.standard_resolution.url,
