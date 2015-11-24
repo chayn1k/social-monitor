@@ -113,7 +113,8 @@ const appConfig = merge({}, config, {
             new webpack.optimize.DedupePlugin(),
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
-                    warnings: VERBOSE
+                    warnings: VERBOSE,
+                    comment: false
                 }
             }),
             new webpack.optimize.AggressiveMergingPlugin()
@@ -181,6 +182,7 @@ const serverConfig = merge({}, config, {
         console: false,
         global: false,
         process: false,
+        fs: 'empty',
         Buffer: false,
         __filename: false,
         __dirname: false

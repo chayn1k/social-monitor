@@ -2,8 +2,10 @@ import {Store} from 'flux/utils';
 import ActionTypes from '../constants/ActionTypes';
 import Dispatcher from '../core/AppDispatcher';
 
-let _state = {
-    columns: 3
+const _state = {
+    columns: 3,
+    updateInterval: 20000, // 20 sec
+    updateStreamInterval: 30000 // 30 sec
 };
 
 class AppStore extends Store {
@@ -14,6 +16,10 @@ class AppStore extends Store {
         switch (action.type) {
             case ActionTypes.CHANGE_COLUMNS:
                 _state.columns = action.data;
+                break;
+
+            case ActionTypes.CHANGE_UPDATE_INTERVAL:
+                _state.updateInterval = action.data;
                 break;
 
             default:

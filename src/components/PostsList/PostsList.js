@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Post from '../Post';
 import withStyles from '../../decorators/withStyles';
-import styles from './PostList.css';
+import styles from './PostsList.css';
 
 @withStyles(styles)
 class PostsList extends Component {

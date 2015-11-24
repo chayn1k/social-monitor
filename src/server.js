@@ -3,7 +3,9 @@ import path from 'path';
 import express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import Router from './routes';
+import { match } from 'react-router';
+import RoutingContext from './core/RoutingContext';
+import routes from './routes';
 import Html from './components/Html';
 
 const server = global.server = express();
@@ -18,7 +20,7 @@ server.use(express.static(path.join(__dirname, 'public')));
 //
 // Register API middleware
 // -----------------------------------------------------------------------------
-server.use('/api/v1', require('./api/v1/routes'));
+server.use('/api/v1', require('./api/v1/'));
 
 //
 // Register server-side rendering middleware
@@ -26,6 +28,7 @@ server.use('/api/v1', require('./api/v1/routes'));
 server.get('*', async (req, res, next) => {
     try {
         let statusCode = 200;
+        let html;
         const data = { title: '', description: '', css: '', body: '' };
         const css = [];
         const context = {
@@ -35,13 +38,23 @@ server.get('*', async (req, res, next) => {
             onPageNotFound: () => statusCode = 404
         };
 
-        await Router.dispatch({ path: req.path, context }, (state, component) => {
-            data.body = ReactDOM.renderToString(component);
-            data.css = css.join('');
-        });
+        match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+            if (error) {
+                res.status(500).send(error.message);
+            } else if (redirectLocation) {
+                res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+            } else if (renderProps) {
+                renderProps.context = context;
 
-        const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
-        res.status(statusCode).send('<!doctype html>\n' + html);
+                data.body = ReactDOM.renderToStaticMarkup(<RoutingContext {...renderProps} />);
+                data.css = css.join('');
+                html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
+
+                res.status(statusCode).send('<!doctype html>\n' + html);
+            } else {
+                res.status(404).send('Not found');
+            }
+        });
     } catch (err) {
         next(err);
     }

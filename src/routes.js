@@ -1,28 +1,28 @@
-import React from 'react';
-import Router from 'react-routing/src/Router';
+import StreamActions from './actions/StreamActions';
+
 import App from './components/App';
 import IndexPage from './components/IndexPage';
 import Stream from './components/Stream';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 
-import StreamActions from './actions/StreamActions';
 
-const router = new Router(on => {
-    on('*', async (state, next) => {
-        const component = await next();
-        return component && <App context={state.context}>{component}</App>;
-    });
+const routeConfig = [
+    { path: '/',
+        component: App,
+        indexRoute: { name: 'index', component: IndexPage },
+        childRoutes: [
+            { path: '/tag/:name', name: 'streamByTag', component: Stream,
+                onEnter: (nextState) => {
+                    StreamActions.receiveMessages(nextState.params.name);
+                }
+            },
 
-    on('/:tag', async (state) => {
-        StreamActions.receiveMessages(state.params.tag);
-        return <IndexPage />;
-    });
+            { path: 'error', name: 'error', component: ErrorPage },
+            { path: '/404', name: '404', component: NotFoundPage },
+            { path: '*', component: NotFoundPage }
+        ]
+    }
+];
 
-    on('error', (state, error) => state.statusCode === 404 ?
-        <App context={state.context} error={error}><NotFoundPage /></App> :
-        <App context={state.context} error={error}><ErrorPage /></App>
-    );
-});
-
-export default router;
+export default routeConfig;

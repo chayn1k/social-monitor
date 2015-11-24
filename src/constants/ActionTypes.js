@@ -10,6 +10,7 @@ export default keyMirror({
 
     UPDATE_MESSAGE_TIME: null,
 
-    CHANGE_COLUMNS: null
+    CHANGE_COLUMNS: null,
+    CHANGE_UPDATE_INTERVAL: null
 
 });

@@ -3,25 +3,26 @@ import ActionTypes from '../constants/ActionTypes';
 import Dispatcher from '../core/AppDispatcher';
 import moment from 'moment';
 
+import logger from '../utils/logger';
 
-let _messages = {};
+
+const _messages = {};
 
 class StreamStore extends Store {
 
     __onDispatch(payload) {
         const action = payload.action;
-        console.log('__onDispatch@StreamStore:14', payload);
+
         switch (action.type) {
             case ActionTypes.REQUEST_MESSAGES:
-                // this.receiveMessages(action.data);
+
                 // @todo: update search value
                 break;
             case ActionTypes.REQUEST_MESSAGES_SUCCESS:
                 this.receiveMessages(action.data);
-                // setInterval(this.updateMessages.bind(this), 1500);
                 break;
             case ActionTypes.REQUEST_MESSAGES_ERROR:
-                console.log('__onDispatch@StreamStore:26', action);
+                logger.error('__onDispatch@StreamStore:25', action.error, action.error.stack);
                 break;
             case ActionTypes.UPDATE_MESSAGE_TIME:
                 this.updateMessages();

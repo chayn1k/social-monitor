@@ -11,15 +11,12 @@ const StreamActions = {
             data: query
         });
         StreamAPI.getMessagesByTag(query);
-        this.updateMessagesTime();
     },
 
     updateMessagesTime() {
-        setInterval(() => {
-            AppDispatcher.handleViewAction({
-                type: CONST.ActionTypes.UPDATE_MESSAGE_TIME
-            });
-        }, 20 * 1000);
+        AppDispatcher.handleViewAction({
+            type: CONST.ActionTypes.UPDATE_MESSAGE_TIME
+        });
     }
 
 };
