@@ -1,0 +1,27 @@
+{
+  "name": "react-search-bar",
+  "version": "1.1.4",
+  "description": "search bar with autosuggest",
+  "keywords": [
+    "search",
+    "autosuggest",
+    "autocomplete",
+    "react",
+    "react-component"
+  ],
+  "homepage": "https://github.com/vakhtang/react-search-bar",
+  "bugs": {
+    "url": "https://github.com/vakhtang/react-search-bar/issues"
+  },
+  "license": "MIT",
+  "author": "vakhtang",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vakhtang/react-search-bar"
+  }
+}
