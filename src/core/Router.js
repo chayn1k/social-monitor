@@ -1,4 +1,3 @@
-import invariant from 'invariant';
 import React, { PropTypes } from 'react';
 import { Router as ParentRouter } from 'react-router';
 import RoutingContext from './RoutingContext';
@@ -10,7 +9,7 @@ class Router extends ParentRouter {
 
     render() {
         const { location, routes, params, components } = this.state;
-        const { RoutingContext, createElement, context, ...props } = this.props;
+        const { RoutingContext, createElement, context, ...props } = this.props; // eslint-disable-line no-shadow
 
         if (location === null) {
             return null; // Async match

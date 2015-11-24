@@ -6,7 +6,7 @@ import Router from './core/Router';
 import routes from './routes';
 
 
-const history = process.env.NODE_ENV === 'production' ? createHashHistory() : createHistory();
+const history = process.env.NODE_ENV !== 'production' ? createHashHistory() : createHistory();
 
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');

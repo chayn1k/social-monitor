@@ -1,5 +1,5 @@
 import winston, {Logger} from 'winston';
-import Logentries from 'winston-logentries';
+import Logentries from 'winston-logentries'; // eslint-disable-line no-unused-vars
 import fs from 'fs';
 import path from 'path';
 

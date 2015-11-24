@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import styles from './IndexPage.css';
 import withStyles from '../../decorators/withStyles';
 import Stream from '../Stream';
@@ -8,7 +8,7 @@ class IndexPage extends Component {
 
     render() {
         return (
-            <div className="page page_index">
+            <div className="index-page">
                 <Stream />
             </div>
         );

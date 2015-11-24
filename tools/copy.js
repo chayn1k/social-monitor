@@ -1,7 +1,5 @@
-import path from 'path';
 import replace from 'replace';
 import Promise from 'bluebird';
-import watch from './lib/watch';
 
 /**
  * Copies static files such as robots.txt, favicon.ico to the

@@ -58,9 +58,11 @@ class StreamStore extends Store {
 
     getAll() {
         let result = [];
+
         if (Object.keys(_messages).length) {
             result = _messages._index.map(msgId => _messages[msgId]);
         }
+
         return result;
     }
 

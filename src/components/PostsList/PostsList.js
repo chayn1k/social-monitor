@@ -24,7 +24,7 @@ class PostsList extends Component {
             const colId = index % col;
             if (!columns[colId]) columns[colId] = [];
             columns[colId].push(
-                <Post key={item.id} post={item} className="post-list__item" />
+                <Post key={`col-${colId}__${item.id}`} post={item} className="post-list__item" />
             );
         });
 
@@ -35,7 +35,7 @@ class PostsList extends Component {
         };
 
         return columns.map((items, index) => (
-            <div key={'post-list-column-' + index} className="posts-list__column" style={colStyle}>
+            <div key={`col-${index}`} className="posts-list__column" style={colStyle}>
                 {items}
             </div>
         ));

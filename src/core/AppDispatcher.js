@@ -21,8 +21,7 @@ class AppDispatcher extends Dispatcher {
 }
 
 const appDispatcher = new AppDispatcher();
-
 export default appDispatcher;
+
 // So we can conveniently do, `import {dispatch} from 'core/Dispatcher';`
 export const dispatch = appDispatcher.dispatch.bind(appDispatcher);
-

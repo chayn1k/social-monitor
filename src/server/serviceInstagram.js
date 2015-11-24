@@ -10,12 +10,12 @@ const count = 10;
 
 class serviceInstagram {
     get(query = '') {
-        return new Promise( (resolve, reject) => {
+        return new Promise((resolve, reject) => {
             const _query = querystring.unescape(query).replace(/(\.|-)/g, '').replace(/(\s)/g, '').replace('#', '');
 
             if (!_query) return resolve([]);
 
-            instagram.tag_media_recent(_query, { count: count }, (err, res) => {
+            instagram.tag_media_recent(_query, { count: count }, (err, res) => { // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
                 if (err) {
                     logger.error(err);
                     return reject(err);
@@ -32,6 +32,7 @@ class serviceInstagram {
 
     static normalize(post) {
         return {
+            // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
             type: 'instagram',
 
             id: post.id,
@@ -50,6 +51,8 @@ class serviceInstagram {
             userFullName: post.user.full_name,
             userPic: post.user.profile_picture,
             userLink: `https://instagram.com/${post.user.username}`
+
+            // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         };
     }
 }

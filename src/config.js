@@ -1,4 +1,4 @@
-
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 const config = {
     twitter: {
         consumer_key: 'dGyHfD9vih9ND3iEzuabbw',

@@ -9,7 +9,7 @@ const count = 10;
 
 class serviceTwitter {
     get(query = '') {
-        return new Promise( (resolve, reject) => {
+        return new Promise((resolve, reject) => {
             if (!query) return resolve([]);
 
             twitter.get('search/tweets', { q: query, count: count }, (err, res) => {
@@ -28,6 +28,7 @@ class serviceTwitter {
     }
 
     static normalize(post) {
+        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
         const entity = {
             type: 'twitter',
 
@@ -57,6 +58,7 @@ class serviceTwitter {
             entity.link = `https://twitter.com/${rtFromUser}/status/${rtId}`;
         }
 
+        // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         return entity;
     }
 }
