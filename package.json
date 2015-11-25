@@ -20,6 +20,7 @@
     "front-matter": "2.0.0",
     "history": "^1.13.1",
     "instagram-node": "^0.5.8",
+    "invariant": "^2.2.0",
     "moment": "^2.10.6",
     "normalize.css": "3.0.3",
     "react": "0.14.0",
@@ -29,6 +30,7 @@
     "superagent": "1.4.0",
     "twit": "^2.1.1",
     "twitter-text": "^1.13.2",
+    "warning": "^2.1.0",
     "winston": "^2.1.0"
   },
   "devDependencies": {
