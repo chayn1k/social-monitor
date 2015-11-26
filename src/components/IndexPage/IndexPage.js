@@ -3,6 +3,7 @@ import styles from './IndexPage.css';
 import withStyles from '../../decorators/withStyles';
 import SearchForm from '../SearchForm';
 
+
 @withStyles(styles)
 class IndexPage extends Component {
 

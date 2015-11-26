@@ -1,0 +1,6 @@
+{
+  "name": "InnerPage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./InnerPage.js"
+}

@@ -1,0 +1,46 @@
+
+@import '../variables.css';
+
+.footer {
+    color: #fff;
+    background: var(--footer-bg);
+}
+
+.footer__container {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 20px 15px;
+
+    text-align: center;
+}
+
+.footer__text {
+    color: rgba(255, 255, 255, 1);
+}
+
+.footer__text_muted {
+    color: rgba(255, 255, 255, .3);
+}
+
+.footer__spacer {
+    color: rgba(255, 255, 255, .3);
+}
+
+.footer__text,
+.footer__link {
+    padding: 2px 5px;
+
+    font-size: 1em;
+}
+
+.footer__link,
+.footer__link:active,
+.footer__link:visited {
+    text-decoration: none;
+
+    color: rgba(255, 255, 255, .6);
+}
+
+.footer__link:hover {
+    color: rgba(255, 255, 255, 1);
+}

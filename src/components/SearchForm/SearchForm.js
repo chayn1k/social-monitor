@@ -3,6 +3,8 @@ import { SearchBar } from '../SearchBar';
 import styles from './SearchForm.css';
 import withStyles from '../../decorators/withStyles';
 
+import StreamAction from '../../actions/StreamActions';
+
 const baseClass = 'search-form';
 
 
@@ -19,13 +21,14 @@ class SearchForm extends Component {
         size: 'normal'
     };
 
-    _onSearchBarChange = (input, resolve) => {
+    _onSearchBarChange = (value, resolve) => {
         // @todo: to handle
         resolve([]);
     };
 
-    _onSubmit = () => {
+    _onSubmit = (value) => {
         // @todo: send event to store
+        StreamAction.receiveMessages(value);
     };
 
     render() {

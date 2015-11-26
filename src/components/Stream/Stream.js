@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import AppStore from '../../stores/AppStore';
 import StreamStore from '../../stores/StreamStore';
 import PostsList from '../PostsList';
@@ -24,6 +24,8 @@ class Stream extends Component {
 
         AppStore.addListener(this._onChange);
         StreamStore.addListener(this._onChange);
+
+        StreamAction.receiveMessages(this.props.params.tagname);
     }
 
     state = getStateFromStores();
@@ -50,5 +52,11 @@ class Stream extends Component {
     }
 
 }
+
+
+Stream.propTypes = {
+    params: PropTypes.object.isRequired
+};
+
 
 export default Stream;

@@ -61,6 +61,7 @@
     "postcss-cssnext": "^2.2.0",
     "postcss-import": "^7.1.0",
     "postcss-loader": "^0.7.0",
+    "postcss-mixins": "^2.1.1",
     "postcss-nested": "^1.0.0",
     "psi": "^1.0.6",
     "react-transform-catch-errors": "^1.0.0",
@@ -84,8 +85,8 @@
   },
   "scripts": {
     "lint": "eslint src tools && jscs src tools",
-    "csslint": "babel-node tools/run csscomb src/components --lint --verbose --exclude src/components/variables.css",
-    "csscomb": "babel-node tools/run csscomb src/components --verbose --exclude src/components/variables.css",
+    "csslint": "babel-node tools/run csscomb src/components --lint --verbose --exclude src/components/*.css",
+    "csscomb": "babel-node tools/run csscomb src/components --verbose --exclude src/components/*.css",
     "test": "eslint src && jest",
     "clean": "babel-node tools/run clean",
     "copy": "babel-node tools/run copy",

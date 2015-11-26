@@ -12,7 +12,7 @@ class StreamStore extends Store {
 
     __onDispatch(payload) {
         const action = payload.action;
-
+        console.log('__onDispatch@StreamStore:15', action);
         switch (action.type) {
             case ActionTypes.REQUEST_MESSAGES:
 

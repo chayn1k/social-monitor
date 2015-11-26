@@ -4,7 +4,10 @@
      * Colors
      * ======================================================================== */
 
-    --app-bg:               #e5e5e5;
+    --app-bg:               #34495e;
+    --header-bg:            #2c3e50;
+    --header-bg--secondary: #7f8c8d;
+    --footer-bg:            #333;
 
     /*
      * Typography
@@ -16,7 +19,7 @@
      * Layout
      * ======================================================================== */
 
-    --max-content-width:     1000px;
+    --max-content-width:     1200px;
 
     /*
      * Media queries breakpoints

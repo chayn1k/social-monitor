@@ -1,8 +1,12 @@
 
+@import '../variables.css';
+
 .index-page {
     display: flex;
 
+    max-width: var(--max-content-width);
     height: 100vh;
+    margin: auto;
 
     align-items: center;
     justify-content: center;

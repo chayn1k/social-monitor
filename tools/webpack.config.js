@@ -83,6 +83,7 @@ const config = {
     postcss: function plugins(bundler) {
         return [
             require('postcss-import')({ addDependencyTo: bundler }),
+            require('postcss-mixins')(),
             require('postcss-nested')(),
             require('postcss-cssnext')({ autoprefixer: AUTOPREFIXER_BROWSERS })
         ];

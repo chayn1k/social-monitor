@@ -1,0 +1,36 @@
+
+@import '../variables.css';
+@import '../mixins.css';
+
+:root {
+    --brand-color: #61dafb;
+}
+
+.header {
+    color: #333;
+    border-bottom: 4px solid var(--header-bg--secondary);
+    background: var(--header-bg);
+}
+
+.header__container {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 20px;
+    @mixin clearfix;
+}
+
+.header__brand {
+    text-decoration: none;
+
+    color: color(var(--brand-color) lightness(+10%));
+
+    font-size: 1.75em;
+}
+
+.header__brand-txt {
+    margin-left: 10px;
+}
+
+.header__nav {
+    float: right;
+}

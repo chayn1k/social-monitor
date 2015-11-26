@@ -5,6 +5,7 @@ import styles from './SearchBar.css';
 import withStyles from '../../decorators/withStyles';
 
 const KEY_CODES = {
+    enter: 13,
     up: 38,
     down: 40
 };
@@ -126,6 +127,10 @@ class SearchBar extends Component {
                                 && this.state.suggestions
                             ) {
                                 this.onKeyDown(ev);
+                            }
+
+                            if (ev.which === KEY_CODES.enter && this.props.onSubmit) {
+                                this.onSubmit(ev);
                             }
                         }} // jscs:ignore requirePaddingNewLinesAfterBlocks
                         onBlur={() => this.setState({isFocused: false, suggestions: []})}

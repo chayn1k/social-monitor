@@ -8,6 +8,8 @@
     border-top-width: 0;
     border-bottom-width: 2px;
     background: #fff;
+
+    font-size: 1.3em;
 }
 
 .search-form_size_big .search-form__inner {
