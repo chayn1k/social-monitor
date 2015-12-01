@@ -18,6 +18,10 @@ class AppStore extends Store {
                 _state.columns = action.data;
                 break;
 
+            case ActionTypes.CHANGE_SEARCH_QUERY:
+                _state.query = action.data;
+                break;
+
             case ActionTypes.CHANGE_UPDATE_INTERVAL:
                 _state.updateInterval = action.data;
                 break;

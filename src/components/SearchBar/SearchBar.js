@@ -21,12 +21,15 @@ class SearchBar extends Component {
             throw Error('You must supply a callback to `onChange`.');
         }
 
-        this.state = this._initialState = {
+        this._initialState = {
             highlightedItem: -1,
             searchTerm: '',
             suggestions: [],
             value: ''
         };
+
+        this.state = Object.assign({}, this._initialState);
+        if (this.props.value) this.state.value = this.props.value;
     }
 
     componentDidMount() {
@@ -38,7 +41,14 @@ class SearchBar extends Component {
     onChange(ev) {
         clearTimeout(this._timerId);
         let input = ev.target.value; // eslint-disable-line prefer-const
-        if (!input) return this.setState(this._initialState);
+
+        if (!input) {
+            this.setState(this._initialState);
+            return new Promise(resolve => {
+                this.props.onChange(input, resolve);
+            });
+        }
+
         this.setState({value: input});
         this._timerId = setTimeout(() => {
             this.autosuggest();
@@ -166,6 +176,7 @@ SearchBar.propTypes = {
     inputName: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func,
+    value: PropTypes.string,
     placeholder: PropTypes.string
 };
 

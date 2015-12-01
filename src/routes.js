@@ -12,6 +12,7 @@ const routeConfig = [
         indexRoute: { name: 'index', component: IndexPage },
         childRoutes: [
             { component: InnerPage, childRoutes: [
+                { path: '/tag', name: 'stream', component: StreamPage },
                 { path: '/tag/:tagname', name: 'streamByTag', component: StreamPage }
             ]},
 

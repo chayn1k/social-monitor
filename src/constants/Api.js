@@ -3,3 +3,7 @@ export default {
     TWITTER: '/api/v1/twitter',
     INSTAGRAM: '/api/v1/instagram'
 };
+
+export const page = {
+    STREAM: '/tag/'
+};

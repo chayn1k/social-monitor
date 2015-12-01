@@ -1,12 +1,10 @@
 import 'babel-core/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createHistory, createHashHistory } from 'history';
+import history from './core/History';
 import Router from './core/Router';
 import routes from './routes';
 
-
-const history = process.env.NODE_ENV === 'production' ? createHashHistory() : createHistory();
 
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');

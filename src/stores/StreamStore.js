@@ -6,64 +6,84 @@ import moment from 'moment';
 import logger from '../utils/logger';
 
 
-const _messages = {};
+let _messages = {
+    __index: []
+};
 
 class StreamStore extends Store {
 
     __onDispatch(payload) {
         const action = payload.action;
-        console.log('__onDispatch@StreamStore:15', action);
+
         switch (action.type) {
             case ActionTypes.REQUEST_MESSAGES:
+                break;
 
-                // @todo: update search value
-                break;
             case ActionTypes.REQUEST_MESSAGES_SUCCESS:
-                this.receiveMessages(action.data);
+                this.addMessages(action.data);
+                this.__emitChange();
                 break;
+
             case ActionTypes.REQUEST_MESSAGES_ERROR:
                 logger.error('__onDispatch@StreamStore:25', action.error, action.error.stack);
                 break;
+
             case ActionTypes.UPDATE_MESSAGE_TIME:
                 this.updateMessages();
+                this.__emitChange();
                 break;
+
+            case ActionTypes.CHANGE_SEARCH_QUERY:
+                this.clearStore();
+                break;
+
             default:
                 return true;
         }
-
-        this.__emitChange();
     }
 
-    receiveMessages(messages) {
-        messages.forEach(msg => {
-            if (!_messages._index) {
-                _messages._index = [];
-            }
 
-            _messages._index.push(msg.id);
+    clearStore() {
+        _messages = {
+            __index: []
+        };
+    }
+
+
+    addMessages(messages) {
+        const tmpIndex = [];
+        if (!_messages.__index) {
+            _messages.__index = [];
+        }
+
+        messages.forEach(msg => {
+            tmpIndex.push(msg.id);
             _messages[msg.id] = msg;
             _messages[msg.id].createdFromNow = moment(msg.createdAt).fromNow();
         });
+        _messages.__index.unshift.apply(_messages.__index, tmpIndex);
     }
 
     updateMessages() {
-        for (const msgId in _messages) if (_messages.hasOwnProperty(msgId)) {
-            _messages[msgId].createdFromNow = moment(_messages[msgId].createdAt).fromNow();
+        const index = _messages.__index;
+        for (let ind = 0, len = index.length; ind < len; ind++) {
+            _messages[index[ind]].createdFromNow = moment(_messages[index[ind]].createdAt).fromNow();
         }
     }
 
-    get(id) {
-        return _messages[id];
-    }
-
-    getAll() {
+    getMessages() {
         let result = [];
 
-        if (Object.keys(_messages).length) {
-            result = _messages._index.map(msgId => _messages[msgId]);
+        if (_messages.__index && _messages.__index.length) {
+            result = _messages.__index.map(msgId => _messages[msgId]);
         }
 
         return result;
+    }
+
+
+    getMessage(id) {
+        return _messages[id];
     }
 
 }

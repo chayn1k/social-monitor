@@ -1,62 +1,72 @@
 import React, { Component, PropTypes } from 'react';
 import AppStore from '../../stores/AppStore';
 import StreamStore from '../../stores/StreamStore';
-import PostsList from '../PostsList';
-import NoPosts from '../NoPosts';
-
 import StreamAction from '../../actions/StreamActions';
 
+import PostsList from '../PostsList';
 
-function getStateFromStores() {
+
+function _getInitState() {
     const appState = AppStore.getState();
     return {
         columns: appState.columns,
         updateInterval: appState.updateInterval,
-        posts: StreamStore.getAll()
+        posts: StreamStore.getMessages()
     };
 }
 
 
 class Stream extends Component {
 
+    static propTypes = {
+        params: PropTypes.object.isRequired,
+        location: PropTypes.object
+    };
+
     constructor(props) {
         super(props);
 
-        AppStore.addListener(this._onChange);
-        StreamStore.addListener(this._onChange);
-
-        StreamAction.receiveMessages(this.props.params.tagname);
+        this._appSubscription = AppStore.addListener(this._onChangeAppStore);
+        this._streamSubscription = StreamStore.addListener(this._onChangeStreamStore);
     }
 
-    state = getStateFromStores();
+    state = _getInitState();
 
     componentDidMount() {
+        const tag = this.props.params.tagname || this.props.location.query.tagname || '';
+
+        StreamAction.receiveMessages(tag);
         this.intervalID = setInterval(StreamAction.updateMessagesTime, this.state.updateInterval);
     }
 
     componentWillUnmount() {
-        AppStore.removeListener(this._onChange);
-        StreamStore.removeListener(this._onChange);
+        this._appSubscription.remove();
+        this._streamSubscription.remove();
         if (this.intervalID) clearInterval(this.intervalID);
     }
 
-    _onChange = () => {
-        return this.setState(getStateFromStores());
+
+    _onChangeAppStore = () => {
+        return this.setState({
+            columns: AppStore.get('columns'),
+            updateInterval: AppStore.get('updateInterval')
+        });
     };
 
+    _onChangeStreamStore = () => {
+        return this.setState({
+            posts: StreamStore.getMessages()
+        });
+    };
+
+
     render() {
-        return (this.state.posts && Object.keys(this.state.posts).length ?
-            <PostsList posts={this.state.posts} columns={this.state.columns} /> :
-            <NoPosts message="Don't load posts."/>
+        return (
+            <PostsList posts={this.state.posts} columns={this.state.columns} />
         );
     }
 
 }
-
-
-Stream.propTypes = {
-    params: PropTypes.object.isRequired
-};
 
 
 export default Stream;

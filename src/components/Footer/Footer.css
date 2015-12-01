@@ -3,6 +3,7 @@
 
 .footer {
     color: #fff;
+    border-top: 3px solid var(--header-bg--secondary);
     background: var(--footer-bg);
 }
 

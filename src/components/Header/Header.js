@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Header.css';
 import withStyles from '../../decorators/withStyles';
+import { page as Api } from '../../constants/Api';
 
 import SearchForm from '../SearchForm';
 import { Link } from 'react-router';
@@ -10,6 +11,12 @@ import { Link } from 'react-router';
 class Header extends Component {
 
     render() {
+        const searchFormProps = {
+            size: 'normal',
+            action: Api.STREAM,
+            searchParam: 'tagname'
+        };
+
         return (
             <div className="header">
                 <div className="header__container">
@@ -19,7 +26,7 @@ class Header extends Component {
                     </Link>
 
                     <div className="header__nav">
-                        <SearchForm size="normal" />
+                        <SearchForm {...searchFormProps} />
                     </div>
                 </div>
             </div>

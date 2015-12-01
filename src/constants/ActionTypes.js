@@ -11,6 +11,7 @@ export default keyMirror({
     UPDATE_MESSAGE_TIME: null,
 
     CHANGE_COLUMNS: null,
+    CHANGE_SEARCH_QUERY: null,
     CHANGE_UPDATE_INTERVAL: null
 
 });
