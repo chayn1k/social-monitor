@@ -1,12 +1,16 @@
 import 'babel-core/polyfill';
 import path from 'path';
 import express from 'express';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { match } from 'react-router';
 import RoutingContext from './core/RoutingContext';
 import routes from './routes';
 import Html from './components/Html';
+
 
 const server = global.server = express();
 const port = process.env.PORT || 5000;
@@ -15,7 +19,15 @@ server.set('port', port);
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
+server.use(cookieParser());
+server.use(session({
+    secret: '12345SOCMON509876',
+    key: 'pagination',
+    resave: false,
+    saveUninitialized: true
+}));
 server.use(express.static(path.join(__dirname, 'public')));
+
 
 //
 // Register API middleware
@@ -37,6 +49,8 @@ server.get('*', async (req, res, next) => {
             onSetMeta: (key, value) => data[key] = value,
             onPageNotFound: () => statusCode = 404
         };
+
+        req.session.__save = true; // hack
 
         match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
             if (error) {

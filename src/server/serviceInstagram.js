@@ -8,31 +8,44 @@ const instagram = new Instagram();
 instagram.use(conf.instagram);
 const count = 10;
 
+
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 class serviceInstagram {
-    get(query = '') {
+    get(query = '', params = {}) {
         return new Promise((resolve, reject) => {
+            const { minId, maxId } = params;
+            let result = { data: [], pagination: { minId, maxId } };
             const _query = querystring.unescape(query).replace(/(\.|-)/g, '').replace(/(\s)/g, '').replace('#', '');
 
-            if (!_query) return resolve([]);
+            if (!_query) return resolve(result);
 
-            instagram.tag_media_recent(_query, { count: count }, (err, res) => { // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+            const _params = { count: count };
+            if (minId) _params.min_tag_id = minId;
+            if (maxId) _params.max_tag_id = maxId;
+
+            instagram.tag_media_recent(_query, _params, (err, res, pagination) => {
                 if (err) {
                     logger.error(err);
                     return reject(err);
                 }
 
                 if (res && (res.length > 0)) {
-                    return resolve(res.slice(0, count).map(serviceInstagram.normalize));
+                    result = {
+                        data: res.slice(0, count).map(serviceInstagram.normalize),
+                        pagination: {
+                            minId: pagination.min_tag_id || minId,
+                            maxId: pagination.next_max_tag_id || maxId
+                        }
+                    };
                 }
 
-                return resolve([]);
+                return resolve(result);
             });
         });
     }
 
     static normalize(post) {
         return {
-            // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
             type: 'instagram',
 
             id: post.id,
@@ -51,8 +64,6 @@ class serviceInstagram {
             userFullName: post.user.full_name,
             userPic: post.user.profile_picture,
             userLink: `https://instagram.com/${post.user.username}`
-
-            // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         };
     }
 }

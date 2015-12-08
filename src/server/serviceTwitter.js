@@ -7,28 +7,43 @@ import logger from './logger';
 const twitter = new Twitter(conf.twitter);
 const count = 10;
 
-class serviceTwitter {
-    get(query = '') {
-        return new Promise((resolve, reject) => {
-            if (!query) return resolve([]);
 
-            twitter.get('search/tweets', { q: query, count: count }, (err, res) => {
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+class serviceTwitter {
+    get(query = '', params = {}) {
+        return new Promise((resolve, reject) => {
+            const { minId, maxId } = params;
+            let result = { data: [], pagination: { minId, maxId } };
+            if (!query) return resolve(result);
+
+            const _params = { q: query, count: count };
+            if (minId) _params.since_id = minId;
+            if (maxId) _params.max_id = maxId;
+
+            twitter.get('search/tweets', _params, (err, res) => {
                 if (err) {
                     logger.error(err);
                     return reject(err);
                 }
 
                 if (res) {
-                    return resolve(res.statuses.map(serviceTwitter.normalize));
+                    const _minId = /since_id=(\d+)/i.exec(res.search_metadata.refresh_url);
+                    const _maxId = /max_id=(\d+)/i.exec(res.search_metadata.next_results);
+                    result = {
+                        data: res.statuses.map(serviceTwitter.normalize),
+                        pagination: {
+                            minId: _minId && _minId[1] || minId,
+                            maxId: _maxId && _maxId[1] || maxId
+                        }
+                    };
                 }
 
-                return resolve([]);
+                return resolve(result);
             });
         });
     }
 
     static normalize(post) {
-        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
         const entity = {
             type: 'twitter',
 
@@ -58,7 +73,6 @@ class serviceTwitter {
             entity.link = `https://twitter.com/${rtFromUser}/status/${rtId}`;
         }
 
-        // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         return entity;
     }
 }
