@@ -1,23 +1,23 @@
 import CONST from '../constants/';
 import AppDispatcher from '../core/AppDispatcher';
+import AppStore from '../stores/AppStore';
 import history from '../core/History';
-import StreamAPI from '../utils/StreamAPI';
 
 
 const AppActions = {
 
-    async changeQuery(query) {
+    changeQuery(query) {
         AppDispatcher.handleViewAction({
             type: CONST.ActionTypes.CHANGE_SEARCH_QUERY,
             data: query
         });
+    },
 
-        if (query) {
-            await StreamAPI.getMessagesByTag(query);
-            history.push(`/tag/${query}`);
-        } else {
-            history.push('/');
-        }
+    requestState(state) {
+        AppDispatcher.handleViewAction({
+            type: CONST.RequestStates.STATE_CHANGED,
+            data: state
+        });
     }
 
 };

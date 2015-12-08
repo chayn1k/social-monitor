@@ -29,7 +29,7 @@ class StreamStore extends Store {
                 break;
 
             case ActionTypes.UPDATE_MESSAGE_TIME:
-                this.updateMessages();
+                this.updateMessagesTime();
                 this.__emitChange();
                 break;
 
@@ -64,7 +64,7 @@ class StreamStore extends Store {
         _messages.__index.unshift.apply(_messages.__index, tmpIndex);
     }
 
-    updateMessages() {
+    updateMessagesTime() {
         const index = _messages.__index;
         for (let ind = 0, len = index.length; ind < len; ind++) {
             _messages[index[ind]].createdFromNow = moment(_messages[index[ind]].createdAt).fromNow();

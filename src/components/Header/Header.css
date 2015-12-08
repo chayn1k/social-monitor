@@ -27,10 +27,20 @@
     font-size: 1.75em;
 }
 
+.header__brand-img_state_progress {
+    animation: spin 3s cubic-bezier(.455, .030, .515, .955) infinite;
+}
+
 .header__brand-txt {
     margin-left: 10px;
 }
 
 .header__nav {
     float: right;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
 }

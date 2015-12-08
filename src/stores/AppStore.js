@@ -1,8 +1,11 @@
 import {Store} from 'flux/utils';
 import ActionTypes from '../constants/ActionTypes';
+import RequestStates from '../constants/RequestStates';
 import Dispatcher from '../core/AppDispatcher';
 
 const _state = {
+    query: '',
+    request: '', // [RequestStates.STATES]
     columns: 3,
     updateInterval: 20000, // 20 sec
     updateStreamInterval: 30000 // 30 sec
@@ -24,6 +27,10 @@ class AppStore extends Store {
 
             case ActionTypes.CHANGE_UPDATE_INTERVAL:
                 _state.updateInterval = action.data;
+                break;
+
+            case RequestStates.STATE_CHANGED:
+                _state.request = action.data;
                 break;
 
             default:

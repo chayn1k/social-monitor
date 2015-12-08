@@ -11,7 +11,7 @@
   "dependencies": {
     "babel-core": "5.8.29",
     "bluebird": "2.10.2",
-    "classnames": "2.2.0",
+    "classnames": "^2.2.0",
     "eventemitter3": "1.1.1",
     "express": "4.13.3",
     "fastclick": "1.0.6",
