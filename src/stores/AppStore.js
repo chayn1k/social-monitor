@@ -8,7 +8,7 @@ const _state = {
     request: '', // [RequestStates.STATES]
     columns: 3,
     updateInterval: 20000, // 20 sec
-    updateStreamInterval: 30000 // 30 sec
+    updateStreamInterval: 60000 // 1 min
 };
 
 class AppStore extends Store {

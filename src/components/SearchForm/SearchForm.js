@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import styles from './SearchForm.css';
 import withStyles from '../../decorators/withStyles';
 
@@ -35,6 +36,7 @@ class SearchForm extends Component {
     }
 
     state = {
+        oldValue: AppStore.get('query') || '',
         value: AppStore.get('query') || ''
     };
 
@@ -45,10 +47,10 @@ class SearchForm extends Component {
 
     // events handlers
     _onAppStoreChange = () => {
-        const query = AppStore.get('query');
-        if (query !== this.state.query) {
-            return this.setState({value: query});
-        }
+        return this.setState({
+            oldValue: AppStore.get('query'),
+            value: AppStore.get('query')
+        });
     };
 
     _onSearchBarChange = (value, resolve) => {
@@ -58,7 +60,8 @@ class SearchForm extends Component {
 
     _onSubmit = (ev) => {
         ev.preventDefault();
-        if (this.state.value || this.state.value === '') {
+
+        if ((this.state.value || this.state.value === '') && this.state.value !== this.state.oldValue) {
             AppAction.changeQuery(this.state.value);
         }
     };
@@ -66,21 +69,18 @@ class SearchForm extends Component {
 
     render() {
         const { size } = this.props;
-        const className = [baseClass];
-
-        if (size) className.push(`${baseClass}_size_${size}`);
-
+        const className = classNames(baseClass, `${baseClass}_size_${size}`);
         const childrenProps = {
             inputName: this.props.searchParam,
             placeholder: this.props.placeholder,
             autoFocus: this.props.autoFocus,
-            onChange: this._onSearchBarChange
+            onChange: this._onSearchBarChange,
+            value: this.state.value
         };
 
-        if (this.state.value || this.state.value === '') childrenProps.value = this.state.value;
 
         return (
-            <form className={className.join(' ')} method="get" action={this.props.action} onSubmit={this._onSubmit}>
+            <form className={className} method="get" action={this.props.action} onSubmit={this._onSubmit}>
                 <div className="search-form__inner">
                     <SearchBar {...childrenProps} />
                 </div>

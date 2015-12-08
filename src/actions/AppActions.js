@@ -1,7 +1,5 @@
 import CONST from '../constants/';
 import AppDispatcher from '../core/AppDispatcher';
-import AppStore from '../stores/AppStore';
-import history from '../core/History';
 
 
 const AppActions = {

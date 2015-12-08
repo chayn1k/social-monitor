@@ -9,8 +9,10 @@ import PostsList from '../PostsList';
 function _getInitState() {
     const appState = AppStore.getState();
     return {
+        query: appState.query,
         columns: appState.columns,
         updateInterval: appState.updateInterval,
+        updateStreamInterval: appState.updateStreamInterval,
         posts: StreamStore.getMessages()
     };
 }
@@ -33,23 +35,37 @@ class Stream extends Component {
     state = _getInitState();
 
     componentDidMount() {
-        const tag = this.props.params.tagname || this.props.location.query.tagname || '';
+        if (this.state.query) {
+            StreamAction.receiveMessages(this.state.query);
+            this.intervalMsgUpdateID = setInterval(() => StreamAction.receiveMessages(this.state.query), this.state.updateStreamInterval);
+        }
 
-        StreamAction.receiveMessages(tag);
-        this.intervalID = setInterval(StreamAction.updateMessagesTime, this.state.updateInterval);
+        this.intervalMsgTimeID = setInterval(StreamAction.updateMessagesTime, this.state.updateInterval);
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (this.state.query !== nextState.query) {
+            if (this.intervalMsgUpdateID) clearInterval(this.intervalMsgUpdateID);
+            StreamAction.receiveMessages(nextState.query);
+            this.intervalMsgUpdateID = setInterval(() => StreamAction.receiveMessages(nextState.query), this.state.updateStreamInterval);
+        }
     }
 
     componentWillUnmount() {
         this._appSubscription.remove();
         this._streamSubscription.remove();
-        if (this.intervalID) clearInterval(this.intervalID);
+        if (this.intervalMsgTimeID) clearInterval(this.intervalMsgTimeID);
+        if (this.intervalMsgUpdateID) clearInterval(this.intervalMsgUpdateID);
     }
 
 
     _onChangeAppStore = () => {
+        const appState = AppStore.getState();
         return this.setState({
-            columns: AppStore.get('columns'),
-            updateInterval: AppStore.get('updateInterval')
+            query: appState.query,
+            columns: appState.columns,
+            updateInterval: appState.updateInterval,
+            updateStreamInterval: appState.updateStreamInterval
         });
     };
 

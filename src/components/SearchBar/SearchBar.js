@@ -32,16 +32,16 @@ class SearchBar extends Component {
         if (this.props.value) this.state.value = this.props.value;
     }
 
-    componentWillReceiveProps(newProps) {
-        this.setState({
-            value: newProps.value
-        });
-    }
-
     componentDidMount() {
         if (this.props.autoFocus) {
             this.refs.input.focus();
         }
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            value: newProps.value
+        });
     }
 
     onChange(ev) {
