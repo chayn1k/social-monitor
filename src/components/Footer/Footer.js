@@ -14,9 +14,9 @@ class Footer extends Component {
                 <div className="footer__container">
                     <span className="footer__text">© Social Monitor</span>
                     <span className="footer__spacer">·</span>
-                    <Link className="footer__link" to="/">GitHub</Link>
+                    <a className="footer__link" href="https://github.com/chayn1k/social-monitor">Source on GitHub</a>
                     <span className="footer__spacer">·</span>
-                    <Link className="footer__link" to="/404">Not Found</Link>
+                    <a className="footer__link" href="http://social-mon.herokuapp.com/">Demo on Heroku</a>
                 </div>
             </div>
         );

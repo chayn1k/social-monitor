@@ -1,6 +1,6 @@
 ## Social Monitor
 
-@TODO: add link to Demo
+**[Demo](http://social-mon.herokuapp.com/)**
 
 ### Directory Layout
 
