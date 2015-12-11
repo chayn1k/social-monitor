@@ -29,9 +29,10 @@ class AppRoute extends Component {
     }
 
     componentDidMount() {
-        const query = this.props.params.tagname || this.props.location.query.tagname || '';
-
-        this._routeHandler(query);
+        const query = this.props.params.tagname || this.props.location.query.tagname;
+        if (query) {
+            this._routeHandler(query);
+        }
     }
 
     componentWillUpdate(newProps, newState) {
@@ -45,9 +46,9 @@ class AppRoute extends Component {
     }
 
 
-    _routeHandler(newValue) {
+    _routeHandler(newValue = '') {
         const curValue = this.state.value;
-        const curPath = this.props.location.pathname;
+        const curPath = this.props.location && this.props.location.pathname || '/';
         const history = this.props.history;
         let path = '/';
 
