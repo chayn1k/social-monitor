@@ -6,7 +6,7 @@ import fetch from './lib/fetch';
 // For more information visit http://gitolite.com/deploy.html
 const getRemote = (slot) => ({
     name: slot ? slot : 'production',
-    url: 'https://git.heroku.com/social-mon.git',
+    url: 'git@heroku.com:social-mon.git',
     website: 'http://social-mon.herokuapp.com/'
 });
 
