@@ -11,6 +11,13 @@ const AppActions = {
         });
     },
 
+    changeColumnsCount(count) {
+        AppDispatcher.handleViewAction({
+            type: CONST.ActionTypes.CHANGE_COLUMNS,
+            data: count
+        });
+    },
+
     requestState(state) {
         AppDispatcher.handleViewAction({
             type: CONST.RequestStates.STATE_CHANGED,

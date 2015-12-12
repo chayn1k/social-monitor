@@ -4,6 +4,7 @@ import StreamStore from '../../stores/StreamStore';
 import StreamAction from '../../actions/StreamActions';
 
 import PostsList from '../PostsList';
+import ColumnsSwitcher from '../ColumnsSwitcher';
 
 
 function _getInitState() {
@@ -78,7 +79,10 @@ class Stream extends Component {
 
     render() {
         return (
-            <PostsList posts={this.state.posts} columns={this.state.columns} />
+            <div>
+                <ColumnsSwitcher />
+                <PostsList posts={this.state.posts} columns={this.state.columns} />
+            </div>
         );
     }
 

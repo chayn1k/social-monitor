@@ -1,0 +1,6 @@
+{
+  "name": "ColumnsSwitcher",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ColumnsSwitcher.js"
+}
