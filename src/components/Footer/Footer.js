@@ -3,6 +3,7 @@ import styles from './Footer.css';
 import withStyles from '../../decorators/withStyles';
 
 import { Link } from 'react-router';
+import Icon from '../Icon';
 
 
 @withStyles(styles)
@@ -14,9 +15,17 @@ class Footer extends Component {
                 <div className="footer__container">
                     <span className="footer__text">© Social Monitor</span>
                     <span className="footer__spacer">·</span>
-                    <a className="footer__link" href="https://github.com/chayn1k/social-monitor">Source on GitHub</a>
+                    <Link className="footer__link" to="/">Main Page</Link>
                     <span className="footer__spacer">·</span>
-                    <a className="footer__link" href="http://social-mon.herokuapp.com/">Demo on Heroku</a>
+                    <a className="footer__link" href="https://github.com/chayn1k/social-monitor">
+                        <Icon className="footer__external-icon" name="external-link" />
+                        Source on GitHub
+                    </a>
+                    <span className="footer__spacer">·</span>
+                    <a className="footer__link" href="http://social-mon.herokuapp.com/">
+                        <Icon className="footer__external-icon" name="external-link" />
+                        Demo on Heroku
+                    </a>
                 </div>
             </div>
         );

@@ -11,7 +11,6 @@ class AppSprite extends Component {
     );
 
     render() {
-        console.log('render@AppSprite:14', this.linkAs('path0', { 'clip-rule': 'evenodd', 'fill-rule': 'evenodd' }));
         return (
             <svg ref={ this.linkAs('ei-sprite', {}) } id="ei-sprite" style={{ display: 'none' }} >
                 <symbol ref={ this.linkAs('twitter-icon', {}) } viewBox="0 0 50 50" id="twitter-icon" >
@@ -19,6 +18,9 @@ class AppSprite extends Component {
                 </symbol>
                 <symbol ref={ this.linkAs('instagram-icon', {}) } viewBox="0 0 50 50" id="instagram-icon" >
                     <path ref={ this.linkAs('path0', { 'clip-rule': 'evenodd', 'fill-rule': 'evenodd' }) } d="M7.313 2.013c-3.006 0-5.304 2.298-5.304 5.304v35.37c0 3.006 2.296 5.304 5.302 5.304h35.37c3.006 0 5.304-2.296 5.304-5.302V7.318c0-3.007-2.298-5.305-5.304-5.305H7.312zm28.295 5.304h5.307c1.06 0 1.768.707 1.768 1.768v5.307c0 1.06-.707 1.768-1.768 1.768h-5.307c-1.06 0-1.768-.707-1.768-1.768V9.085c0-1.06.707-1.768 1.768-1.768zm-10.61 8.843c4.953 0 8.842 3.89 8.842 8.84 0 4.952-3.89 8.844-8.84 8.844-4.952 0-8.844-3.892-8.844-8.843 0-4.95 3.892-8.84 8.843-8.84zM7.314 21.465h4.068c-.353 1.06-.528 2.298-.528 3.536 0 7.783 6.366 14.15 14.147 14.15 7.78 0 14.147-6.367 14.147-14.148 0-1.237-.178-2.474-.53-3.535h4.067v19.45c0 1.062-.707 1.772-1.768 1.772H9.086c-1.063 0-1.773-.71-1.773-1.77V21.463z" />
+                </symbol>
+                <symbol ref={ this.linkAs('external-link-icon', {}) } viewBox="0 0 50 50" id="external-link-icon">
+                    <path d="M44.455 3.265l2.28 2.28L22.58 29.697l-2.277-2.278z"/><path d="M47.214 18.9H43.99V6.01H31.1V2.785h16.114zM39.158 47.9H6.933c-2.74 0-4.834-2.094-4.834-4.833V10.842c0-2.74 2.094-4.833 4.833-4.833h17.723v3.22H6.933c-.967 0-1.612.646-1.612 1.612v32.225c0 .967.646 1.612 1.613 1.612h32.225c.966 0 1.61-.646 1.61-1.613V25.344h3.223v17.723c0 2.74-2.093 4.834-4.832 4.834z"/>
                 </symbol>
             </svg>
         );

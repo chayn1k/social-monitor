@@ -8,6 +8,7 @@
 # THANKS
 
     http://www.reactstarterkit.com/
+    http://evil-icons.io/
 
 # TECHNOLOGY COLOPHON
 

@@ -26,6 +26,8 @@
 }
 
 .footer__spacer {
+    padding: 0 .2em;
+
     color: rgba(255, 255, 255, .3);
 }
 
@@ -39,11 +41,28 @@
 .footer__link,
 .footer__link:active,
 .footer__link:visited {
-    text-decoration: none;
+    text-decoration: underline;
 
     color: rgba(255, 255, 255, .6);
 }
 
 .footer__link:hover {
+    text-decoration: none;
+
     color: rgba(255, 255, 255, 1);
+}
+
+.footer__external-icon {
+    display: inline-block;
+
+    width: 14px;
+    height: 14px;
+    margin-right: .3em;
+    margin-left: .3em;
+
+    fill: #a9a9a9;
+}
+
+.footer__link:hover .footer__external-icon {
+    fill: #fff;
 }
