@@ -1,8 +1,18 @@
 
 @import '../variables.css';
 
+.page-container {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
 .inner-page {
+    width: 100%;
     max-width: var(--max-content-width);
     margin: auto;
     padding: 0 20px 40px;
+
+    flex: 1 0 auto;
 }

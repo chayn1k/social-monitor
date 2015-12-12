@@ -15,7 +15,7 @@ class InnerPage extends Component {
 
     render() {
         return (
-            <section>
+            <section className="page-container">
                 <Header />
                 <div className="inner-page">
                     {this.props.children}

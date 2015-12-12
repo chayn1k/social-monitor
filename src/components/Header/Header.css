@@ -10,6 +10,8 @@
     color: #333;
     border-bottom: 4px solid var(--header-bg--secondary);
     background: var(--header-bg);
+
+    flex: none;
 }
 
 .header__container {
