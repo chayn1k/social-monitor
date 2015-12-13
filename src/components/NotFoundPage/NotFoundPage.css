@@ -37,11 +37,12 @@ p {
 
 .not-found-page {
     display: inline-block;
+
+    box-sizing: border-box;
     min-width: 650px;
     max-width: var(--max-content-width);
     margin: auto;
     padding: 40px 20px 80px;
-    box-sizing: border-box;
 
     border: 1px solid #d8d8d8;
     border-top-width: 0;
@@ -51,8 +52,8 @@ p {
 
 @media (--mq-sm-min) {
     .not-found-page {
-        min-width: 0;
         width: 100%;
+        min-width: 0;
     }
 }
 

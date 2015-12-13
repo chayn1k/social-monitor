@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash'; // eslint-disable-line id-length
 
 /**
  * @param {Array} percents

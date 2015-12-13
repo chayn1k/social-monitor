@@ -40,6 +40,12 @@ class AppRoute extends Component {
     }
 
     componentWillUpdate(newProps, newState) {
+        if (this.props.params.tagname !== newProps.params.tagname ||
+            this.props.location.query.tagname !== newProps.location.query.tagname
+        ) {
+            this._routeHandler(newProps.params.tagname || newProps.location.query.tagname);
+        }
+
         if (this.state.query !== newState.query) {
             this._routeHandler(newState.query);
         }
