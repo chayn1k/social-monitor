@@ -5,7 +5,6 @@
 
 .post {
     box-sizing: border-box;
-    /*width: 45%;*/
     margin: .5em 0 1em;
     padding: .2em;
 
@@ -13,7 +12,6 @@
     border-top-width: 0;
     border-bottom-width: 2px;
     background-color: #fff;
-    /*box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, .4);*/
 }
 
 .post__header {
@@ -61,6 +59,7 @@
 
     font-size: 1.3rem;
 }
+
 
 /* user */
 .post__user {
@@ -120,8 +119,8 @@
     opacity: .7;
 }
 
-/* content */
 
+/* content */
 .post__content {
     display: block;
 
@@ -132,6 +131,7 @@
 .post__text {
     overflow: hidden;
 }
+
 
 /* media */
 .post__media {

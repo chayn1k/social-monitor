@@ -1,8 +1,9 @@
-import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
-import Suggestions from './Suggestions';
+import classNames from 'classnames';
 import styles from './SearchBar.css';
 import withStyles from '../../decorators/withStyles';
+
+import Suggestions from './Suggestions';
 
 const KEY_CODES = {
     enter: 13,
@@ -121,13 +122,13 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div className="search-bar-wrapper">
+            <div className="search-bar">
                 <div className={classNames(
-                  'search-bar-field',
-                  {'is-focused': this.state.isFocused}
+                  'search-bar__field',
+                  {'search-bar__field_focused': this.state.isFocused}
                 )}>
                     <input
-                        className="search-bar-input"
+                        className="search-bar__input"
                         name={this.props.inputName}
                         type="text"
                         maxLength="100"
@@ -153,12 +154,12 @@ class SearchBar extends Component {
                         onFocus={() => this.setState({isFocused: true})}/>
                     { this.state.value &&
                         <span
-                            className="icon search-bar-cancel"
+                            className="search-bar__icon search-bar__cancel"
                             onClick={() => this.setState(this._initialState)}>
                         </span>
                     }
                     <input
-                        className="icon search-bar-submit"
+                        className="search-bar__icon search-bar__submit"
                         type="submit"
                         onClick={this.props.onSubmit && this.onSubmit.bind(this)}/>
                 </div>

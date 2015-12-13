@@ -31,3 +31,8 @@
     --screen-lg-min:         1200px; /* Large screen / wide desktop */
 
 }
+
+@custom-media --mq-xs-min only screen and (width <= 480px);
+@custom-media --mq-sm-min only screen and (width <= 768px);
+@custom-media --mq-md-min only screen and (width <= 992px);
+@custom-media --mq-lg-min only screen and (width <= 1200px);

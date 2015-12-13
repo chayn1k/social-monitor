@@ -1,30 +1,32 @@
 import React, { Component, PropTypes } from 'react';
-import withStyles from '../../decorators/withStyles';
+import classNames from 'classnames';
 import styles from './Icon.css';
+import withStyles from '../../decorators/withStyles';
 
 
 @withStyles(styles)
 class Icon extends Component {
 
     static propTypes = {
-        size: PropTypes.string,
         name: PropTypes.string.isRequired,
+        size: PropTypes.string,
         className: PropTypes.string
     };
 
     render() {
-        const size = this.props.size ? ' icon_size_' + this.props.size : '';
-        const className = this.props.className ? ' ' + this.props.className : '';
-        const _class = 'icon icon-' + this.props.name + size + className;
+        const className = classNames('icon', `icon-${this.props.name}`, {
+            [`icon_size_${this.props.size}`]: this.props.size,
+            [this.props.className]: this.props.className
+        });
 
-        const name = '#' + this.props.name + '-icon';
-        const useTag = '<use xlink:href=' + name + ' />';
+        const useTag = `<use xlink:href='#${this.props.name}-icon' />`;
         const icon = (
             <svg className="icon__cnt" dangerouslySetInnerHTML={{__html: useTag }}>
             </svg>
         );
+
         return (
-            <div className={_class}>{icon}</div>
+            <div className={className}>{icon}</div>
         );
     }
 

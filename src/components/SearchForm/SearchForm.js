@@ -62,7 +62,7 @@ class SearchForm extends Component {
         ev.preventDefault();
 
         if ((this.state.value || this.state.value === '') && this.state.value !== this.state.oldValue) {
-            AppAction.changeQuery(this.state.value);
+            AppAction.queryChange(this.state.value);
         }
     };
 

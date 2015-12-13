@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import moment from 'moment';
-import withStyles from '../../decorators/withStyles';
 import styles from './Post.css';
+import withStyles from '../../decorators/withStyles';
+
 import Icon from '../Icon';
+
 
 @withStyles(styles)
 class Post extends Component {
@@ -11,14 +14,16 @@ class Post extends Component {
         post: PropTypes.object.isRequired
     };
 
-    getMedia(medias) {
+    renderMedia(medias) {
         if (!(medias && medias.length)) return null;
 
-        const items = medias.map(media => <img key={media.mediaId} src={media.mediaUrl} alt="" className="post__media-item" />);
+        const items = medias.map(media => (
+            <img key={media.mediaId} src={media.mediaUrl} alt="" className="post__media-item" />
+        ));
         return <div className="post__media">{items}</div>;
     }
 
-    getUser() {
+    renderUser() {
         const post = this.props.post;
         return (
             <cite className="post__user">
@@ -38,23 +43,27 @@ class Post extends Component {
         const post = this.props.post;
 
         return (
-            <li className={'post' + (post.type ? ' post_type_' + post.type : '')}>
+            <div className={classNames('post', { [`post_type_${post.type}`]: post.type })}>
                 <article>
-                    <header className="post__header"><div className="post__header-inner">
-                        {this.getUser()}
+                    <header className="post__header">
+                        <div className="post__header-inner">
+                            {this.renderUser()}
 
-                        <a href={post.link} className="post__source-link">
-                            <Icon name={post.type} className={'post__source post__source_type_' + post.type} />
-                        </a>
-                    </div></header>
+                            <a href={post.link} className="post__source-link">
+                                <Icon name={post.type} className={classNames('post__source', {
+                                    [`post__source_type_${post.type}`]: post.type
+                                })} />
+                            </a>
+                        </div>
+                    </header>
 
                     <blockquote cite={post.link} className="post__content">
                         <div className="post__text" dangerouslySetInnerHTML={{__html: post.text}}></div>
-                        {this.getMedia(this.props.post.medias)}
+                        {this.renderMedia(this.props.post.medias)}
                     </blockquote>
 
                 </article>
-            </li>
+            </div>
         );
     }
 

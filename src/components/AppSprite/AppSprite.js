@@ -1,6 +1,7 @@
 /* Converted https://theadd.github.io/svg2react/ */
 import React, { Component } from 'react';
 
+
 class AppSprite extends Component {
 
     linkAs = (key, attrs) => (

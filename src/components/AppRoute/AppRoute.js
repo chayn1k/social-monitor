@@ -12,6 +12,10 @@ class AppRoute extends Component {
         location: PropTypes.object.isRequired
     };
 
+    static contextTypes = {
+        onSetTitle: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
 
@@ -54,6 +58,7 @@ class AppRoute extends Component {
 
 
         this.setState({ query: newValue });
+        this.context.onSetTitle(`#${newValue} - Social Monitor`);
 
         if (newValue) {
             path = `/tag/${newValue}`;
@@ -64,7 +69,7 @@ class AppRoute extends Component {
         }
 
         if (newValue && newValue !== curValue) {
-            AppAction.changeQuery(newValue);
+            AppAction.queryChange(newValue);
         }
     }
 

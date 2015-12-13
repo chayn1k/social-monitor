@@ -16,7 +16,7 @@ const StreamActions = {
 
     updateMessagesTime() {
         AppDispatcher.handleViewAction({
-            type: CONST.ActionTypes.UPDATE_MESSAGE_TIME
+            type: CONST.ActionTypes.UPDATE_MESSAGES_TIME
         });
     }
 

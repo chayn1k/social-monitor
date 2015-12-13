@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import Post from '../Post';
-import withStyles from '../../decorators/withStyles';
 import styles from './PostsList.css';
+import withStyles from '../../decorators/withStyles';
+
+import Post from '../Post';
 
 
 @withStyles(styles)
@@ -16,7 +17,7 @@ class PostsList extends Component {
         columns: 3
     };
 
-    getChildren() {
+    renderChildren() {
         // Build list items of single tweet components using map
         const columns = [];
         const col = this.props.columns;
@@ -44,7 +45,7 @@ class PostsList extends Component {
 
     render() {
         return (
-            <section className="posts-list">{this.getChildren()}</section>
+            <section className="posts-list">{this.renderChildren()}</section>
         );
     }
 

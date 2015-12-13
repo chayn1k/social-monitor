@@ -28,7 +28,7 @@ class StreamStore extends Store {
                 logger.error('__onDispatch@StreamStore:25', action.error, action.error.stack);
                 break;
 
-            case ActionTypes.UPDATE_MESSAGE_TIME:
+            case ActionTypes.UPDATE_MESSAGES_TIME:
                 this.updateMessagesTime();
                 this.__emitChange();
                 break;
@@ -57,7 +57,10 @@ class StreamStore extends Store {
         }
 
         messages.forEach(msg => {
-            tmpIndex.push(msg.id);
+            if (!(msg.id in _messages)) {
+                tmpIndex.push(msg.id);
+            }
+
             _messages[msg.id] = msg;
             _messages[msg.id].createdFromNow = moment(msg.createdAt).fromNow();
         });

@@ -5,8 +5,6 @@ import RoutingContext from './RoutingContext';
 
 class Router extends ParentRouter {
 
-    static displayName = 'overrideRouter';
-
     render() {
         const { location, routes, params, components } = this.state;
         const { RoutingContext, createElement, context, ...props } = this.props; // eslint-disable-line no-shadow

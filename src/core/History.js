@@ -1,5 +1,5 @@
 import env from '../utils/env';
-import { createHistory, createHashHistory, createMemoryHistory } from 'history';
+import { createHistory, createHashHistory, createMemoryHistory } from 'history'; // eslint-disable-line no-unused-vars
 
 let history;
 

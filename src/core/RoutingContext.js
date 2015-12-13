@@ -7,8 +7,6 @@ import getRouteParams from '../../node_modules/react-router/lib/getRouteParams';
 
 class RoutingContext extends ParentRoutingContext {
 
-    static displayName = 'overrideRoutingContext';
-
     render() {
         const { history, location, routes, params, components, context } = this.props;
         let element = null;

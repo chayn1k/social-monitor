@@ -30,6 +30,7 @@
     opacity: .7;
     background: center center no-repeat;
 }
+
 .col-switcher__item:first-child {
     margin-left: 0;
 }
