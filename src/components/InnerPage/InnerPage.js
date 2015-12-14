@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styles from './InnerPage.css';
 import withStyles from '../../decorators/withStyles';
 
+import Sticky from 'react-sticky';
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -16,7 +17,9 @@ class InnerPage extends Component {
     render() {
         return (
             <section className="page-container">
-                <Header />
+                <Sticky className="header-wrap" stickyClass="header-wrap_position_sticky" topOffset={90}>
+                    <Header />
+                </Sticky>
                 <div className="inner-page">
                     {this.props.children}
                 </div>
