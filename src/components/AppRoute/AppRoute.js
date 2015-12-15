@@ -64,7 +64,7 @@ class AppRoute extends Component {
 
 
         this.setState({ query: newValue });
-        this.context.onSetTitle(`#${newValue} - Social Monitor`);
+        this.context.onSetTitle(`#${newValue} — Social Monitor`);
 
         if (newValue) {
             path = `/tag/${newValue}`;

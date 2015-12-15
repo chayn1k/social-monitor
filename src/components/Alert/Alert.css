@@ -1,0 +1,106 @@
+
+@import '../mixins.css';
+
+.alert {
+    margin-bottom: 1em;
+    padding: .75em  1em;
+
+    color: #fff;
+    border: 1px solid transparent;
+    border-width: 0 1px 2px 1px;
+}
+
+
+.alert__close {
+    /*@mixin sr-only;*/
+    position: absolute;
+    top: .85em;
+    right: .75em;
+
+    visibility: hidden;
+
+    margin: 0;
+    padding: 0;
+
+    color: inherit;
+    border: none;
+    background: transparent;
+}
+
+.alert__close-icon {
+    width: 16px;
+    height: 16px;
+
+    fill: #fff;
+}
+
+
+/* Alignment */
+.alert_center {
+    text-align: center;
+}
+.alert_right {
+    text-align: right;
+}
+
+
+/* Types */
+.alert_primary {
+    background: rgba(149, 165, 166, 1.0);
+}
+
+.alert_info {
+    background: rgba(52, 152, 219, 1.0);
+}
+
+.alert_success {
+    background: rgba(46, 204, 113, 1.0);
+}
+
+.alert_warning {
+    background: rgba(230, 126, 34, 1.0);
+}
+
+.alert_danger,
+.alert_error {
+    background: rgba(231, 76, 60 ,1.0);
+}
+
+
+/* Clickable */
+.alert_clickable {
+    cursor: pointer;
+}
+
+.alert_clickable.alert_primary:hover {
+    background: rgba(127, 140, 141, 1.0);
+}
+
+.alert_clickable.alert_info:hover {
+    background: rgba(41, 128, 185, 1.0);
+}
+
+.alert_clickable.alert_success:hover {
+    background: rgba(39, 174, 96, 1.0);
+}
+
+.alert_clickable.alert_warning:hover {
+    background: rgba(211, 84, 0, 1.0);
+}
+
+.alert_clickable.alert_danger:hover,
+.alert_clickable.alert_error:hover {
+    background: rgba(192, 57, 43, 1.0);
+}
+
+
+/* Dismissible */
+.alert_dismissible {
+    position: relative;
+
+    padding-right: 2.25em;
+}
+
+.alert_dismissible .alert__close {
+    visibility: visible;
+}

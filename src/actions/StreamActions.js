@@ -14,6 +14,12 @@ const StreamActions = {
         await StreamAPI.getMessagesByTag(query);
     },
 
+    showNewMessages() {
+        AppDispatcher.handleViewAction({
+            type: CONST.ActionTypes.SHOW_NEW_MESSAGES
+        });
+    },
+
     updateMessagesTime() {
         AppDispatcher.handleViewAction({
             type: CONST.ActionTypes.UPDATE_MESSAGES_TIME

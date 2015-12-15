@@ -4,6 +4,7 @@
   "excludeFiles": ["build/**", "node_modules/**"],
   "validateIndentation": 4,
   "disallowMultipleLineBreaks": false,
+  "disallowQuotedKeysInObjects": null,
   "requireTrailingComma": null,
   "validateQuoteMarks": null
 }

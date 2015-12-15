@@ -28,6 +28,11 @@ class StreamStore extends Store {
                 logger.error('__onDispatch@StreamStore:25', action.error, action.error.stack);
                 break;
 
+            case ActionTypes.SHOW_NEW_MESSAGES:
+                this.addNewMessages();
+                this.__emitChange();
+                break;
+
             case ActionTypes.UPDATE_MESSAGES_TIME:
                 this.updateMessagesTime();
                 this.__emitChange();
@@ -64,7 +69,19 @@ class StreamStore extends Store {
             _messages[msg.id] = msg;
             _messages[msg.id].createdFromNow = moment(msg.createdAt).fromNow();
         });
-        _messages.__index.unshift.apply(_messages.__index, tmpIndex);
+
+        if (_messages.__index.length) {
+            if (!_messages.__newIndex) _messages.__newIndex = [];
+            _messages.__newIndex.unshift.apply(_messages.__newIndex, tmpIndex);
+        } else {
+            _messages.__index.unshift.apply(_messages.__index, tmpIndex);
+        }
+    }
+
+    addNewMessages() {
+        _messages.__index.unshift.apply(_messages.__index, _messages.__newIndex);
+        delete _messages.__newIndex;
+        this.updateMessagesTime();
     }
 
     updateMessagesTime() {
@@ -79,6 +96,10 @@ class StreamStore extends Store {
 
         if (_messages.__index && _messages.__index.length) {
             result = _messages.__index.map(msgId => _messages[msgId]);
+        }
+
+        if (_messages.__newIndex && _messages.__newIndex.length) {
+            result.hasNew = _messages.__newIndex.length;
         }
 
         return result;
